@@ -1,8 +1,13 @@
+import EducationSync from "./Forms/Education";
 import { PersonalSync } from "./Forms/PersonalDetails";
 
 function Resume() {
-  const personal = PersonalSync();
-  return <PersonalSync />;
+  return (
+    <>
+      <PersonalSync />
+      <EducationSync />
+    </>
+  );
 }
 
 export default Resume;
