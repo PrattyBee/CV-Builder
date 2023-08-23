@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 function EducationForm({ school, degree, start, end, location, handleChange }) {
   return (
     <form>
@@ -7,7 +9,7 @@ function EducationForm({ school, degree, start, end, location, handleChange }) {
           type="text"
           id="school"
           name="school"
-          placeholder="Eneter school / university"
+          placeholder="Enter school / university"
           value={school}
           onChange={(e) => handleChange(e)}
         />
@@ -60,4 +62,67 @@ function EducationForm({ school, degree, start, end, location, handleChange }) {
   );
 }
 
-export default EducationForm;
+function Education({ school, degree, start, end, location }) {
+  return (
+    <div className="education">
+      <div>
+        <p>
+          {start} - {end}
+        </p>
+        <p>{location}</p>
+      </div>
+      <div>
+        <h3>{school}</h3>
+        <p>{degree}</p>
+      </div>
+    </div>
+  );
+}
+
+function EducationSync() {
+  const [education, setEducation] = useState({
+    school: "",
+    degree: "",
+    start: "",
+    end: "",
+    location: "",
+  });
+
+  function handleChange(e) {
+    const elementId = e.target.id;
+    const value = e.target.value;
+    if (elementId === "school") {
+      setEducation({ ...education, school: value });
+    } else if (elementId === "degree") {
+      setEducation({ ...education, degree: value });
+    } else if (elementId === "start") {
+      setEducation({ ...education, start: value });
+    } else if (elementId === "end") {
+      setEducation({ ...education, end: value });
+    } else if (elementId === "location") {
+      setEducation({ ...education, location: value });
+    }
+  }
+
+  return (
+    <>
+      <Education
+        school={education.school}
+        degree={education.degree}
+        start={education.start}
+        end={education.end}
+        location={education.location}
+      />
+      <EducationForm
+        school={education.school}
+        degree={education.degree}
+        start={education.start}
+        end={education.end}
+        location={education.location}
+        handleChange={handleChange}
+      />
+    </>
+  );
+}
+
+export default EducationSync;
