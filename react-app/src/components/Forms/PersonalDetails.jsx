@@ -2,7 +2,7 @@ import { useState } from "react";
 
 function PersonalDetails({ name, email, phone, address }) {
   return (
-    <div className="resume-personal">
+    <div>
       <h1>{name}</h1>
       <h2>{email}</h2>
       <h2>{phone}</h2>
@@ -14,6 +14,7 @@ function PersonalDetails({ name, email, phone, address }) {
 function PersonalDetailsForm({ name, email, phone, address, handleChange }) {
   return (
     <form>
+      <h2>Personal Details</h2>
       <div>
         <label htmlFor="fullName">Full Name</label>
         <input
@@ -83,23 +84,24 @@ function PersonalSync() {
       setPersonal({ ...personal, address: value });
     }
   }
+  return (
+    <>
+      <PersonalDetails
+        name={personal.name}
+        email={personal.email}
+        phone={personal.phone}
+        address={personal.address}
+      />
 
-  return [
-    <PersonalDetails
-      name={personal.name}
-      email={personal.email}
-      phone={personal.phone}
-      address={personal.address}
-    />,
-
-    <PersonalDetailsForm
-      name={personal.name}
-      email={personal.email}
-      phone={personal.phone}
-      address={personal.address}
-      handleChange={handleChange}
-    />,
-  ];
+      <PersonalDetailsForm
+        name={personal.name}
+        email={personal.email}
+        phone={personal.phone}
+        address={personal.address}
+        handleChange={handleChange}
+      />
+    </>
+  );
 }
 
 export { PersonalSync };
