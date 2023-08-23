@@ -1,5 +1,14 @@
-import { PersonalDetails } from "./Forms/PersonalDetails";
+import { useState } from "react";
+import { PersonalSync } from "./Forms/PersonalDetails";
 
 function Resume() {
-  return <PersonalDetails />;
+  const personal = PersonalSync();
+  return (
+    <>
+      {personal[0]}
+      {personal[1]}
+    </>
+  );
 }
+
+export default Resume;

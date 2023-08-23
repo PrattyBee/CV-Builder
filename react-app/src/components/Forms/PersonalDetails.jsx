@@ -1,38 +1,28 @@
 import { useState } from "react";
 
-const [personal, setPersonal] = useState({
-  name: "",
-  email: "",
-  phone: "",
-  address: "",
-});
-
-const [show, setShow] = useState(false);
-
-function PersonalDetails() {
+function PersonalDetails({ name, email, phone, address }) {
   return (
     <div className="resume-personal">
-      <h1>{personal.name}</h1>
-      <h2>{personal.email}</h2>
-      <h2>{personal.phone}</h2>
-      <h2>{personal.address}</h2>
+      <h1>{name}</h1>
+      <h2>{email}</h2>
+      <h2>{phone}</h2>
+      <h2>{address}</h2>
     </div>
   );
 }
 
-function PersonalDetailsForm() {
+function PersonalDetailsForm({ name, email, phone, address, handleChange }) {
   return (
     <form>
       <div>
-        <label htmlFor="firstName">First Name</label>
+        <label htmlFor="fullName">Full Name</label>
         <input
           type="text"
-          id="firstName"
-          name="firstName"
+          id="fullName"
+          name="fullName"
           placeholder="First and last name"
-          value={personal.name}
-          required
-          onChange={(e) => setPersonal({ ...personal, name: e.target.value })}
+          value={name}
+          onChange={(e) => handleChange(e)}
         />
       </div>
       <div>
@@ -42,9 +32,8 @@ function PersonalDetailsForm() {
           id="email"
           name="email"
           placeholder="Enter email"
-          value={personal.email}
-          required
-          onChange={(e) => setPersonal({ ...personal, email: e.target.value })}
+          value={email}
+          onChange={(e) => handleChange(e)}
         />
       </div>
       <div>
@@ -54,13 +43,63 @@ function PersonalDetailsForm() {
           id="phoneNumber"
           name="phoneNumber"
           placeholder="Enter phone number"
-          value={personal.phone}
-          required
-          onChange={(e) => setPersonal({ ...personal, phone: e.target.value })}
+          value={phone}
+          onChange={(e) => handleChange(e)}
+        />
+      </div>
+      <div>
+        <label htmlFor="address">Address</label>
+        <input
+          type="text"
+          id="address"
+          name="address"
+          placeholder="City, Country"
+          value={address}
+          onChange={(e) => handleChange(e)}
         />
       </div>
     </form>
   );
 }
 
-export { PersonalDetailsForm, PersonalDetails };
+function PersonalSync() {
+  const [personal, setPersonal] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    address: "",
+  });
+
+  function handleChange(e) {
+    const elementId = e.target.id;
+    const value = e.target.value;
+    if (elementId === "fullName") {
+      setPersonal({ ...personal, name: value });
+    } else if (elementId === "email") {
+      setPersonal({ ...personal, email: value });
+    } else if (elementId === "phoneNumber") {
+      setPersonal({ ...personal, phone: value });
+    } else if (elementId === "address") {
+      setPersonal({ ...personal, address: value });
+    }
+  }
+
+  return [
+    <PersonalDetails
+      name={personal.name}
+      email={personal.email}
+      phone={personal.phone}
+      address={personal.address}
+    />,
+
+    <PersonalDetailsForm
+      name={personal.name}
+      email={personal.email}
+      phone={personal.phone}
+      address={personal.address}
+      handleChange={handleChange}
+    />,
+  ];
+}
+
+export { PersonalSync };
