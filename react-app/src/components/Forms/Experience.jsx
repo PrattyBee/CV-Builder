@@ -1,4 +1,20 @@
-import { useState } from "react";
+function Experience({ compName, position, start, end, location, description }) {
+  return (
+    <div className="experience">
+      <div>
+        <p>
+          {start} - {end}
+        </p>
+        <p>{location}</p>
+      </div>
+      <div>
+        <h3>{compName}</h3>
+        <p>{position}</p>
+        <p>{description}</p>
+      </div>
+    </div>
+  );
+}
 
 function ExperienceForm({
   compName,
@@ -79,75 +95,4 @@ function ExperienceForm({
     </form>
   );
 }
-
-function Experience({ compName, position, start, end, location, description }) {
-  return (
-    <div className="experience">
-      <div>
-        <p>
-          {start} - {end}
-        </p>
-        <p>{location}</p>
-      </div>
-      <div>
-        <h3>{compName}</h3>
-        <p>{position}</p>
-        <p>{description}</p>
-      </div>
-    </div>
-  );
-}
-
-function ExperienceSync() {
-  const [experience, setExperience] = useState({
-    compName: "",
-    position: "",
-    start: "",
-    end: "",
-    location: "",
-    description: "",
-  });
-
-  function handleChange(e) {
-    const elementId = e.target.id;
-    const value = e.target.value;
-    if (elementId === "compName") {
-      setExperience({ ...experience, compName: value });
-    } else if (elementId === "position") {
-      setExperience({ ...experience, position: value });
-    } else if (elementId === "start") {
-      setExperience({ ...experience, start: value });
-    } else if (elementId === "end") {
-      setExperience({ ...experience, end: value });
-    } else if (elementId === "location") {
-      setExperience({ ...experience, location: value });
-    } else if (elementId === "description") {
-      setExperience({ ...experience, description: value });
-    }
-  }
-
-  return (
-    <>
-      <Experience
-        compName={experience.compName}
-        position={experience.position}
-        start={experience.start}
-        end={experience.end}
-        location={experience.location}
-        description={experience.description}
-      />
-
-      <ExperienceForm
-        compName={experience.compName}
-        position={experience.position}
-        start={experience.start}
-        end={experience.end}
-        location={experience.location}
-        description={experience.description}
-        handleChange={handleChange}
-      />
-    </>
-  );
-}
-
-export default ExperienceSync;
+export { Experience, ExperienceForm };
