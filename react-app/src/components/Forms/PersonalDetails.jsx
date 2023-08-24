@@ -2,7 +2,7 @@ import { useState } from "react";
 
 function PersonalDetails({ name, email, phone, address }) {
   return (
-    <div>
+    <div className="personal">
       <h1>{name}</h1>
       <h2>{email}</h2>
       <h2>{phone}</h2>
@@ -13,7 +13,7 @@ function PersonalDetails({ name, email, phone, address }) {
 
 function PersonalDetailsForm({ name, email, phone, address, handleChange }) {
   return (
-    <form>
+    <form className="personal-form">
       <h2>Personal Details</h2>
       <div>
         <label htmlFor="fullName">Full Name</label>
@@ -63,45 +63,4 @@ function PersonalDetailsForm({ name, email, phone, address, handleChange }) {
   );
 }
 
-function PersonalSync() {
-  const [personal, setPersonal] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    address: "",
-  });
-
-  function handleChange(e) {
-    const elementId = e.target.id;
-    const value = e.target.value;
-    if (elementId === "fullName") {
-      setPersonal({ ...personal, name: value });
-    } else if (elementId === "email") {
-      setPersonal({ ...personal, email: value });
-    } else if (elementId === "phoneNumber") {
-      setPersonal({ ...personal, phone: value });
-    } else if (elementId === "address") {
-      setPersonal({ ...personal, address: value });
-    }
-  }
-  return (
-    <>
-      <PersonalDetails
-        name={personal.name}
-        email={personal.email}
-        phone={personal.phone}
-        address={personal.address}
-      />
-
-      <PersonalDetailsForm
-        name={personal.name}
-        email={personal.email}
-        phone={personal.phone}
-        address={personal.address}
-        handleChange={handleChange}
-      />
-    </>
-  );
-}
-
-export { PersonalSync };
+export { PersonalDetails, PersonalDetailsForm };
