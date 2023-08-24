@@ -1,7 +1,7 @@
-import EducationSync from "./Forms/Education";
 import ExperienceSync from "./Forms/Experience";
 import { useState } from "react";
 import { PersonalDetails, PersonalDetailsForm } from "./Forms/PersonalDetails";
+import { Education, EducationForm } from "./Forms/Education";
 
 function Resume() {
   const [personal, setPersonal] = useState({
@@ -9,6 +9,14 @@ function Resume() {
     email: "",
     phone: "",
     address: "",
+  });
+
+  const [education, setEducation] = useState({
+    school: "",
+    degree: "",
+    start: "",
+    end: "",
+    location: "",
   });
 
   function educationChange(e) {
@@ -22,6 +30,22 @@ function Resume() {
       setPersonal({ ...personal, phone: value });
     } else if (elementId === "address") {
       setPersonal({ ...personal, address: value });
+    }
+  }
+
+  function handleChange(e) {
+    const elementId = e.target.id;
+    const value = e.target.value;
+    if (elementId === "school") {
+      setEducation({ ...education, school: value });
+    } else if (elementId === "degree") {
+      setEducation({ ...education, degree: value });
+    } else if (elementId === "start") {
+      setEducation({ ...education, start: value });
+    } else if (elementId === "end") {
+      setEducation({ ...education, end: value });
+    } else if (elementId === "location") {
+      setEducation({ ...education, location: value });
     }
   }
 
@@ -41,7 +65,21 @@ function Resume() {
         address={personal.address}
         handleChange={educationChange}
       />
-      <EducationSync />
+      <Education
+        school={education.school}
+        degree={education.degree}
+        start={education.start}
+        end={education.end}
+        location={education.location}
+      />
+      <EducationForm
+        school={education.school}
+        degree={education.degree}
+        start={education.start}
+        end={education.end}
+        location={education.location}
+        handleChange={handleChange}
+      />
       <ExperienceSync />
     </>
   );
