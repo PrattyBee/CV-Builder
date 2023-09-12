@@ -40,3 +40,62 @@
 .read-the-docs {
   color: #888;
 }
+
+.resume-main {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+}
+
+.personal {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 50px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.personal > * {
+  text-align: center;
+}
+
+.personal > h1 {
+  grid-column: 1 / 6;
+}
+
+.education {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.education > h2 {
+  grid-column: 1 / 3;
+}
+
+.education-info {
+  display: flex;
+  gap: 30px;
+}
+
+.education-info > div > p {
+  text-align: left;
+  margin: 0;
+}
+
+.experience {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.experience > h2 {
+  grid-column: 1 / 3;
+}
+
+.experience-info {
+  display: flex;
+  gap: 30px;
+}
+
+.experience-info > div > * {
+  text-align: left;
+  margin: 0;
+}

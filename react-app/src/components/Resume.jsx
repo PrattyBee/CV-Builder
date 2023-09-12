@@ -77,8 +77,8 @@ function Resume() {
   }
 
   return (
-    <>
-      <div>
+    <div className="resume-main">
+      <div className="resume">
         <PersonalDetails
           name={personal.name}
           email={personal.email}
@@ -103,7 +103,7 @@ function Resume() {
           description={experience.description}
         />
       </div>
-      <div>
+      <div className="resume-forms">
         <PersonalDetailsForm
           name={personal.name}
           email={personal.email}
@@ -130,7 +130,7 @@ function Resume() {
           handleChange={experienceChange}
         />
       </div>
-    </>
+    </div>
   );
 }
 

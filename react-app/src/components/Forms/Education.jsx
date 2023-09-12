@@ -2,7 +2,8 @@ import { useState } from "react";
 
 function EducationForm({ school, degree, start, end, location, handleChange }) {
   return (
-    <form>
+    <form className="education-form">
+      <h2>Education</h2>
       <div>
         <label htmlFor="school">School</label>
         <input
@@ -65,15 +66,18 @@ function EducationForm({ school, degree, start, end, location, handleChange }) {
 function Education({ school, degree, start, end, location }) {
   return (
     <div className="education">
-      <div>
-        <p>
-          {start} - {end}
-        </p>
-        <p>{location}</p>
-      </div>
-      <div>
-        <h3>{school}</h3>
-        <p>{degree}</p>
+      <h2>Education</h2>
+      <div className="education-info">
+        <div>
+          <p>
+            {start} - {end}
+          </p>
+          <p>{location}</p>
+        </div>
+        <div>
+          <p style={{ fontWeight: "bold" }}>{school}</p>
+          <p>{degree}</p>
+        </div>
       </div>
     </div>
   );

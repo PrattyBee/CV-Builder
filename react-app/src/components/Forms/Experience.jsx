@@ -1,16 +1,19 @@
 function Experience({ compName, position, start, end, location, description }) {
   return (
     <div className="experience">
-      <div>
-        <p>
-          {start} - {end}
-        </p>
-        <p>{location}</p>
-      </div>
-      <div>
-        <h3>{compName}</h3>
-        <p>{position}</p>
-        <p>{description}</p>
+      <h2>Experience</h2>
+      <div className="experience-info">
+        <div>
+          <p>
+            {start} - {end}
+          </p>
+          <p>{location}</p>
+        </div>
+        <div>
+          <h3>{compName}</h3>
+          <p>{position}</p>
+          <p>{description}</p>
+        </div>
       </div>
     </div>
   );
@@ -26,7 +29,8 @@ function ExperienceForm({
   handleChange,
 }) {
   return (
-    <form>
+    <form className="experience">
+      <h2>Experience</h2>
       <div>
         <label htmlFor="compName">Company Name</label>
         <input
